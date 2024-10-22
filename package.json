@@ -22,6 +22,7 @@
     "discord-api-types": "^0.37.73",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5",
+    "express": "^4.21.1",
     "ffmpeg": "^0.0.4",
     "libsodium-wrappers": "^0.7.13",
     "mongoose": "^7.6.9",
