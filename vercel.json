@@ -5,5 +5,11 @@
       "src": "src/run.js",
       "use": "@vercel/node"
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/run.js"
+    }
   ]
 }
