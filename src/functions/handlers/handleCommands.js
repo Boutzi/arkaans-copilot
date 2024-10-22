@@ -4,7 +4,6 @@ const fs = require("fs");
 
 module.exports = (client) => {
   client.handleCommands = async (guildid) => {
-    
     client.commands.clear();
     client.commandArray = [];
     const commandFolder = fs.readdirSync(`./src/commands`);
@@ -20,8 +19,8 @@ module.exports = (client) => {
         commandArray.push(command.data.toJSON());
       }
     }
-    const clientId = process.env.clientid;
-    const rest = new REST({ version: "10" }).setToken(process.env.token);
+    const clientId = process.env.CLIENTID;
+    const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
     try {
       await rest.put(Routes.applicationGuildCommands(clientId, guildid), {
         body: client.commandArray,

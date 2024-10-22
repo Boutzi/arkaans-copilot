@@ -10,7 +10,7 @@ const info = "\x1b[32m";
 
 console.log(error, `=> STARTING DISCORD BOT <=`, reset);
 console.log(warning, `NAME: Arkaans Copilot`, reset);
-const { token, database } = process.env;
+const { TOKEN, DATABASE } = process.env;
 const { connect } = require("mongoose");
 const { Client, Collection } = require("discord.js");
 const fs = require("fs");
@@ -35,7 +35,7 @@ for (const folder of functionFolder) {
 client.handleEvents();
 client.handleComponents();
 
-client.login(token);
+client.login(TOKEN);
 (async () => {
   await connect(database).catch(console.error);
 })();
