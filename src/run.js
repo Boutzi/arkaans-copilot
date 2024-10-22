@@ -23,6 +23,19 @@ client.selectMenus = new Collection();
 client.modals = new Collection();
 client.commandArray = [];
 
+console.log(
+  trace,
+  `Using token: ${TOKEN ? "Token is present" : "Token is missing"}`,
+  reset
+);
+console.log(
+  trace,
+  `Connecting to database: ${
+    DATABASE ? "Database string is present" : "Database string is missing"
+  }`,
+  reset
+);
+
 const functionFolder = fs.readdirSync(`./src/functions`);
 for (const folder of functionFolder) {
   const functionFiles = fs
@@ -37,7 +50,7 @@ client.handleComponents();
 
 client.login(TOKEN);
 (async () => {
-  await connect(database).catch(console.error);
+  await connect(DATABASE).catch(console.error);
 })();
 
 client.on("guildCreate", (guild) => {
