@@ -9,7 +9,7 @@ const reset = "\x1b[0m";
 const info = "\x1b[32m";
 
 console.log(error, `=> STARTING DISCORD BOT <=`, reset);
-console.log(warning, `NAME: Arkaans Copilot`, reset);
+console.log(warning, `Arkaans Copilot`, reset);
 const { TOKEN, DATABASE } = process.env;
 const { connect } = require("mongoose");
 const { Client, Collection } = require("discord.js");
