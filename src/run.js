@@ -48,9 +48,17 @@ for (const folder of functionFolder) {
 client.handleEvents();
 client.handleComponents();
 
-client.login(TOKEN);
+client.login(TOKEN).catch((error) => {
+  console.error("Failed to login:", error);
+});
+
 (async () => {
-  await connect(DATABASE).catch(console.error);
+  try {
+    await connect(DATABASE);
+    console.log("Connected to database");
+  } catch (error) {
+    console.error("Database connection error:", error);
+  }
 })();
 
 client.on("guildCreate", (guild) => {
@@ -66,6 +74,14 @@ client.on("ready", () => {
     client.handleCommands(guild.id);
     console.log(`|- Loaded commands for ${guild.name}`);
   });
+});
+
+client.on("error", (error) => {
+  console.error("WebSocket error:", error);
+});
+
+client.on("disconnect", (event) => {
+  console.log(`Disconnected: ${event.code} - ${event.reason}`);
 });
 
 const app = express();
