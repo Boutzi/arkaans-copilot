@@ -11,6 +11,13 @@ const info = "\x1b[32m";
 console.log(error, `=> STARTING DISCORD BOT <=`, reset);
 console.log(warning, `Arkaans Copilot`, reset);
 const { TOKEN, DATABASE } = process.env;
+
+console.log("Token Length:", TOKEN ? TOKEN.length : "Token is missing");
+console.log(
+  "Database Length:",
+  DATABASE ? DATABASE.length : "Database string is missing"
+);
+
 const { connect } = require("mongoose");
 const { Client, Collection } = require("discord.js");
 const fs = require("fs");
