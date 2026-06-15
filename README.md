@@ -1,0 +1,180 @@
+<div align="center">
+
+# Arkaans Copilot
+
+**Arkaans Copilot is a Discord bot designed to streamline the management of temporary voice channels within your Discord server.**
+
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Discord.js](https://img.shields.io/badge/Discord.js-v14-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.js.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white)](https://supabase.com/)
+[![Prisma](https://img.shields.io/badge/Prisma-7.x-2D3748?style=flat-square&logo=prisma&logoColor=white)](https://www.prisma.io/)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](./LICENSE)
+
+[Documentation](https://copilot.arkaans.com) · [Invite the bot](https://discord.com/oauth2/authorize?client_id=927699980985192449&permissions=8&scope=bot) · [Arkaans Discord server](https://discord.gg/BgRwHfK)
+
+</div>
+
+---
+
+## Overview
+
+Arkaans Copilot is a Discord bot that automatically creates and manages temporary voice channels when users join a configured source channel. When the last member leaves, the temporary channel is deleted automatically.
+
+This repository contains **v3** — a full rewrite in TypeScript with a production-ready architecture, PostgreSQL persistence, concurrent queue handling, and CI/CD pipeline. Previous versions are archived in the [`archive/`](./archive/) directory.
+
+---
+
+## Features
+
+### Core
+
+- **Temporary voice channels** — Automatically created on join, deleted on leave
+- **Concurrent queue handling** — Per-guild queues prevent race conditions on simultaneous joins
+- **Crash recovery** — Active channels are persisted in DB and cleaned up on bot restart
+
+### Admin commands
+
+| Command             | Description                                                           |
+| ------------------- | --------------------------------------------------------------------- |
+| `/setchannel`       | Configure a voice channel as a source trigger with a custom name list |
+| `/resetchannel`     | Clear the name list for a specific channel                            |
+| `/resetallchannels` | Reset all channel configurations for the server                       |
+
+### Welcome
+
+| Command       | Description                                         |
+| ------------- | --------------------------------------------------- |
+| `/setwelcome` | Set up a customizable welcome image for new members |
+
+---
+
+## Tech Stack
+
+| Layer            | Technology                       |
+| ---------------- | -------------------------------- |
+| Language         | TypeScript 5.x                   |
+| Runtime          | Node.js 20+                      |
+| Discord library  | Discord.js v14                   |
+| Database         | PostgreSQL (Supabase)            |
+| ORM              | Prisma 7                         |
+| Queue            | p-queue                          |
+| Containerization | Docker + GHCR                    |
+| CI/CD            | GitHub Actions                   |
+| Hosting          | Oracle Cloud Free Tier / Railway |
+
+---
+
+## Database Schema
+
+```
+Guild (1)
+├── SourceChannel (Many)
+│   └── TempChannel (Many)
+└── WelcomeConfig (1)
+```
+
+- **Guild** — root entity, one record per Discord server
+- **SourceChannel** — configured trigger channels with a custom name list
+- **TempChannel** — currently active temporary channels (cleared on restart)
+- **WelcomeConfig** — per-guild welcome image configuration
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 20+
+- A Discord bot token ([Discord Developer Portal](https://discord.com/developers/applications))
+- A Supabase project ([supabase.com](https://supabase.com))
+
+### Installation
+
+```bash
+git clone https://github.com/Boutzi/arkaans-copilot.git
+cd arkaans-copilot
+npm install
+```
+
+### Environment
+
+Create a `.env` file at the root:
+
+```env
+DISCORD_TOKEN=your_discord_bot_token
+CLIENT_ID=your_discord_client_id
+
+# Supabase connection pooler (used by the bot)
+DATABASE_URL="postgresql://postgres.[ref]:[password]@aws-1-eu-central-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
+
+# Supabase direct connection (used for migrations)
+DIRECT_URL="postgresql://postgres.[ref]:[password]@aws-1-eu-central-1.pooler.supabase.com:5432/postgres"
+```
+
+### Database
+
+```bash
+npx prisma migrate dev --name init
+npx prisma generate
+```
+
+### Run
+
+```bash
+# Development
+npm run dev
+
+# Production
+npm run build
+npm start
+```
+
+---
+
+## CI/CD Pipeline
+
+```
+Push / PR  →  Lint + Type check
+Merge main →  Build Docker image → Push to GHCR → Deploy
+```
+
+Managed via GitHub Actions. The Docker image is published to GitHub Container Registry and deployed automatically on merge to `main`.
+
+---
+
+## Roadmap
+
+### v3.0 — Foundation
+
+- [x] TypeScript rewrite
+- [x] PostgreSQL schema with Prisma
+- [x] Per-guild concurrent queue (p-queue)
+- [ ] Command handler
+- [ ] Event handler
+- [ ] `/setchannel`, `/resetchannel`, `/resetallchannels`
+- [ ] Crash recovery on restart
+- [ ] Docker setup
+- [ ] GitHub Actions CI/CD
+
+### v3.1 — Welcome
+
+- [ ] `/setwelcome` — customizable welcome image
+- [ ] Hex color, background image, custom message support
+
+### v3.x — Future
+
+- [ ] Monitoring (Sentry)
+- [ ] Web dashboard for guild admins
+- [ ] Internationalization (i18n) — multi-language support via i18next
+
+---
+
+## Documentation
+
+Full documentation is available at [copilot.arkaans.com](https://copilot.arkaans.com).
+
+---
+
+## License
+
+[MIT](./LICENSE)

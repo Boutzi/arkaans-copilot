@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -10,4 +5,62 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+model Guild {
+  id                 String            @id @default(cuid())
+  discordId          String            @unique @db.VarChar(20) @map("discord_id")
+  guildName          String            @db.VarChar(100) @map("guild_name")
+  createdAt          DateTime          @default(now()) @db.Timestamp(3) @map("created_at")
+  updatedAt          DateTime          @updatedAt @db.Timestamp(3) @map("updated_at")
+
+  sourceChannels     SourceChannel[]
+  welcomeConfig      WelcomeConfig?
+
+  @@map("guild")
+}
+
+model SourceChannel {
+  id                 String            @id @default(cuid())
+  discordId          String            @unique @db.VarChar(20) @map("discord_id")
+  sourceChannelName  String            @db.VarChar(100) @map("channel_name")
+  nameList           String[]          @map("name_list")
+  guildId            String            @db.VarChar(20) @map("guild_id")
+  createdAt          DateTime          @default(now()) @db.Timestamp(3) @map("created_at")
+  updatedAt          DateTime          @updatedAt @db.Timestamp(3) @map("updated_at")
+  
+  tempChannels       TempChannel[]
+  guild              Guild             @relation(fields: [guildId], references: [id])
+
+  @@map("source_channel")
+}
+
+model TempChannel {
+  id                 String            @id @default(cuid())
+  discordId          String            @unique @db.VarChar(20) @map("discord_id")
+  tempChannelName    String            @db.VarChar(100) @map("channel_name")
+  sourceChannelId    String            @db.VarChar(20) @map("source_channel_id")
+  createdAt          DateTime          @default(now()) @db.Timestamp(3) @map("created_at")
+  updatedAt          DateTime          @updatedAt @db.Timestamp(3) @map("updated_at")
+
+  sourceChannel      SourceChannel     @relation(fields: [sourceChannelId], references: [id])
+
+  @@map("temp_channel")
+}
+
+model WelcomeConfig {
+  id                 String            @id @default(cuid())
+  welcomeChannelId   String            @db.VarChar(20) @map("welcome_channel_id")
+  welcomeChannelName String            @db.VarChar(100) @map("welcome_channel_name")
+  backgroundImageUrl String            @map("background_image_url")
+  isActive           Boolean           @default(true) @map("is_active")
+  hexColor           String?           @db.VarChar(7) @map("hex_color")
+  welcomeMessage     String?           @db.VarChar(500) @map("welcome_message")
+  guildId            String            @unique @db.VarChar(20) @map("guild_id")
+  createdAt          DateTime          @default(now()) @db.Timestamp(3) @map("created_at")
+  updatedAt          DateTime          @updatedAt @db.Timestamp(3) @map("updated_at")
+
+  guild              Guild             @relation(fields: [guildId], references: [id])
+
+  @@map("welcome_config")
 }
