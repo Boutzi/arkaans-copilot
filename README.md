@@ -37,14 +37,17 @@ This repository contains **v3** — a full rewrite in TypeScript with a producti
 | Command             | Description                                                           |
 | ------------------- | --------------------------------------------------------------------- |
 | `/setchannel`       | Configure a voice channel as a source trigger with a custom name list |
-| `/resetchannel`     | Clear the name list for a specific channel                            |
-| `/resetallchannels` | Reset all channel configurations for the server                       |
+| `/resetchannel`     | Remove the configuration for a specific source channel                |
+| `/resetallchannels` | Remove all source channel configurations for the server               |
+| `/setwelcome`       | Set up a customizable welcome image for new members                   |
+| `/testwelcome`      | Trigger the welcome message manually to preview the result            |
 
-### Welcome
+### Common commands
 
-| Command       | Description                                         |
-| ------------- | --------------------------------------------------- |
-| `/setwelcome` | Set up a customizable welcome image for new members |
+| Command    | Description                                    |
+| ---------- | ---------------------------------------------- |
+| `/arkaans` | Invitation link to the official Arkaans server |
+| `/help`    | Display all available commands                 |
 
 ---
 
@@ -58,6 +61,7 @@ This repository contains **v3** — a full rewrite in TypeScript with a producti
 | Database         | PostgreSQL (Supabase)            |
 | ORM              | Prisma 7                         |
 | Queue            | p-queue                          |
+| Image generation | @napi-rs/canvas                  |
 | Containerization | Docker + GHCR                    |
 | CI/CD            | GitHub Actions                   |
 | Hosting          | Oracle Cloud Free Tier / Railway |
@@ -101,8 +105,8 @@ npm install
 Create a `.env` file at the root:
 
 ```env
-DISCORD_TOKEN=your_discord_bot_token
-CLIENT_ID=your_discord_client_id
+DISCORD_BOT_TOKEN=your_discord_bot_token
+DISCORD_CLIENT_ID=your_discord_client_id
 
 # Supabase connection pooler (used by the bot)
 DATABASE_URL="postgresql://postgres.[ref]:[password]@aws-1-eu-central-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
@@ -124,9 +128,11 @@ npx prisma generate
 # Development
 npm run dev
 
+# Deploy slash commands
+npm run deploy
+
 # Production
-npm run build
-npm start
+npm run prod
 ```
 
 ---
@@ -147,19 +153,15 @@ Managed via GitHub Actions. The Docker image is published to GitHub Container Re
 ### v3.0 — Foundation
 
 - [x] TypeScript rewrite
-- [x] PostgreSQL schema with Prisma
+- [x] PostgreSQL schema with Prisma 7
 - [x] Per-guild concurrent queue (p-queue)
-- [ ] Command handler
-- [ ] Event handler
-- [ ] `/setchannel`, `/resetchannel`, `/resetallchannels`
-- [ ] Crash recovery on restart
-- [ ] Docker setup
-- [ ] GitHub Actions CI/CD
-
-### v3.1 — Welcome
-
-- [ ] `/setwelcome` — customizable welcome image
-- [ ] Hex color, background image, custom message support
+- [x] Command handler
+- [x] Event handler
+- [x] `/setchannel`, `/resetchannel`, `/resetallchannels`
+- [x] `/setwelcome` + `/testwelcome` — customizable welcome image
+- [x] Crash recovery on restart
+- [x] Docker setup
+- [x] GitHub Actions CI/CD
 
 ### v3.x — Future
 
