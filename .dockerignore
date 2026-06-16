@@ -2,7 +2,6 @@ node_modules/
 archive/
 prisma/migrations/
 sql/
-src/
 *.log
 .env
 .env.*
