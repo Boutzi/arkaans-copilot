@@ -25,7 +25,7 @@ model SourceChannel {
   discordId          String            @unique @db.VarChar(20) @map("discord_id")
   sourceChannelName  String            @db.VarChar(100) @map("channel_name")
   nameList           String[]          @map("name_list")
-  guildId            String            @db.VarChar(20) @map("guild_id")
+  guildId            String            @db.VarChar(30) @map("guild_id")
   createdAt          DateTime          @default(now()) @db.Timestamp(3) @map("created_at")
   updatedAt          DateTime          @updatedAt @db.Timestamp(3) @map("updated_at")
   
@@ -39,7 +39,7 @@ model TempChannel {
   id                 String            @id @default(cuid())
   discordId          String            @unique @db.VarChar(20) @map("discord_id")
   tempChannelName    String            @db.VarChar(100) @map("channel_name")
-  sourceChannelId    String            @db.VarChar(20) @map("source_channel_id")
+  sourceChannelId    String            @db.VarChar(30) @map("source_channel_id")
   createdAt          DateTime          @default(now()) @db.Timestamp(3) @map("created_at")
   updatedAt          DateTime          @updatedAt @db.Timestamp(3) @map("updated_at")
 
@@ -50,13 +50,13 @@ model TempChannel {
 
 model WelcomeConfig {
   id                 String            @id @default(cuid())
-  welcomeChannelId   String            @db.VarChar(20) @map("welcome_channel_id")
+  welcomeChannelId   String            @db.VarChar(30) @map("welcome_channel_id")
   welcomeChannelName String            @db.VarChar(100) @map("welcome_channel_name")
   backgroundImageUrl String            @map("background_image_url")
   isActive           Boolean           @default(true) @map("is_active")
   hexColor           String?           @db.VarChar(7) @map("hex_color")
   welcomeMessage     String?           @db.VarChar(500) @map("welcome_message")
-  guildId            String            @unique @db.VarChar(20) @map("guild_id")
+  guildId            String            @unique @db.VarChar(30) @map("guild_id")
   createdAt          DateTime          @default(now()) @db.Timestamp(3) @map("created_at")
   updatedAt          DateTime          @updatedAt @db.Timestamp(3) @map("updated_at")
 

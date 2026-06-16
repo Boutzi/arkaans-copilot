@@ -3,3 +3,4 @@
 .env
 node_modules
 /src/generated/prisma
+/dist

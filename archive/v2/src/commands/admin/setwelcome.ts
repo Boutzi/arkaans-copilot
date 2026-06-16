@@ -14,24 +14,24 @@ module.exports = {
     .setDescription("Setup configuration for the welcome message for new members")
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addBooleanOption((option) =>
-      option.setName("activated").setDescription("Activate welcome message").setRequired(true)
+      option.setName("activated").setDescription("Activate welcome message").setRequired(true),
     )
     .addStringOption((option) =>
       option
         .setName("image")
         .setDescription("Background image link for the welcome message (format: PNG/JPG/WEBP)")
-        .setRequired(true)
+        .setRequired(true),
     )
     .addStringOption((option) =>
       option
         .setName("color")
         .setDescription(
-          "Color for the new member username (optional, default: white, format: Hexadecimal [e.g. #FFFFFF])"
+          "Color for the new member username (optional, default: white, format: Hexadecimal [e.g. #FFFFFF])",
         )
-        .setRequired(false)
+        .setRequired(false),
     )
     .addStringOption((option) =>
-      option.setName("quote").setDescription("Quote to display with the welcome message (optional)").setRequired(false)
+      option.setName("quote").setDescription("Quote to display with the welcome message (optional)").setRequired(false),
     ),
 
   async execute(interaction) {

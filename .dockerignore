@@ -1,0 +1,16 @@
+node_modules/
+archive/
+prisma/migrations/
+sql/
+src/
+*.log
+.env
+.env.*
+.vscode
+.github/
+.git/
+.gitignore
+.dockerignore
+Dockerfile
+README.md
+LICENSE
