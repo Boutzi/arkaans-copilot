@@ -32,4 +32,13 @@ export const Messages = {
   RESETALLCHANNEL_CANCELLED: "All channels reset action has been cancelled.",
   RESETALLCHANNEL_SUCCESS_TITLE: "All channels reset successfully",
   RESETALLCHANNEL_SUCCESS_DESCRIPTION: "All channel configurations have been successfully reset.",
+  SETWELCOME_DESCRIPTION: "Set the welcome message configuration for the server.",
+  SETWELCOME_CHANNEL_DESCRIPTION: "Select the channel where the welcome message will be sent.",
+  SETWELCOME_IMAGE_DESCRIPTION: "Enter the URL of the background image for the welcome message.",
+  SETWELCOME_ACTIVATED_DESCRIPTION: "Activate or deactivate the welcome message.",
+  SETWELCOME_COLOR_DESCRIPTION: "Select the color for the welcome message embed.",
+  SETWELCOME_QUOTE_DESCRIPTION: "Enter a custom quote for the welcome message.",
+  SETWELCOME_SUCCESS_TITLE: "Welcome message configuration updated successfully",
+  TESTWELCOME_DESCRIPTION: "Test the welcome message",
+  TESTWELCOME_SUCCESS: "Welcome test triggered!",
 } as const;
