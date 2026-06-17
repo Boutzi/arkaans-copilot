@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder } from "discord.js";
+import { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, MessageFlags } from "discord.js";
 import { Messages } from "../../locales/messages.js";
 import type { Command } from "../../types/command.js";
 
@@ -14,6 +14,8 @@ const command: Command = {
             `\`/setchannel\` — ${Messages.HELP_ADMIN_SETCHANNEL_DESCRIPTION}`,
             `\`/resetchannel\` — ${Messages.HELP_ADMIN_RESETCHANNEL_DESCRIPTION}`,
             `\`/resetallchannels\` — ${Messages.HELP_ADMIN_RESETALLCHANNEL_DESCRIPTION}`,
+            `\`/setwelcome\` — ${Messages.HELP_ADMIN_SETWELCOME_DESCRIPTION}`,
+            `\`/testwelcome\` — ${Messages.HELP_ADMIN_TESTWELCOME_DESCRIPTION}`,
           ].join("\n"),
         },
         {
@@ -23,7 +25,7 @@ const command: Command = {
       )
       .setColor(0x5865f2);
 
-    await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
+    await interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
   },
 };
 

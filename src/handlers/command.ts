@@ -4,6 +4,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import type { Client } from "discord.js";
 import type { Command } from "../types/command.js";
+import { isLoadableModule } from "../utils/isLoadable.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -13,9 +14,7 @@ export async function loadCommands(client: Client): Promise<void> {
     const folders = readdirSync(join(__dirname, "../commands"));
 
     for (const folder of folders) {
-      const files = readdirSync(join(__dirname, "../commands", folder)).filter(
-        (f) => f.endsWith(".js") || f.endsWith(".ts"),
-      );
+      const files = readdirSync(join(__dirname, "../commands", folder)).filter(isLoadableModule);
 
       for (const file of files) {
         const command: Command = (await import(`../commands/${folder}/${file}`)).default;

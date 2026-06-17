@@ -6,6 +6,7 @@ import {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
+  MessageFlags,
 } from "discord.js";
 import { Messages } from "../../locales/messages.js";
 import type { Command } from "../../types/command.js";
@@ -36,7 +37,7 @@ const command: Command = {
     await interaction.reply({
       embeds: [embed],
       components: [row],
-      flags: ["Ephemeral"],
+      flags: MessageFlags.Ephemeral,
     });
   },
 };
