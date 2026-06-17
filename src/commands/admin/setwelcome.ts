@@ -4,6 +4,7 @@ import {
   PermissionFlagsBits,
   ChannelType,
   EmbedBuilder,
+  MessageFlags,
 } from "discord.js";
 import type { Command } from "../../types/command.js";
 import { Messages } from "../../locales/messages.js";
@@ -35,17 +36,17 @@ const command: Command = {
     ),
 
   async execute(interaction: ChatInputCommandInteraction) {
+    await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+
     const channel =
       interaction.options.getChannel("channel") ??
       interaction.guild!.channels.cache.get(interaction.guild!.systemChannelId!);
 
     if (!channel) {
-      await interaction.reply({
-        content: "No welcome channel found. Please specify a channel.",
-        flags: ["Ephemeral"],
-      });
+      await interaction.editReply({ content: "No welcome channel found. Please specify a channel." });
       return;
     }
+
     const image = interaction.options.getString("image", true);
     const activated = interaction.options.getBoolean("activated") ?? true;
     const color = interaction.options.getString("color") ?? "#FFFFFF";
@@ -92,7 +93,7 @@ const command: Command = {
       )
       .setThumbnail(image);
 
-    await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
+    await interaction.editReply({ embeds: [embed] });
   },
 };
 

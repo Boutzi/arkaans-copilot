@@ -7,6 +7,7 @@ import {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
+  MessageFlags,
 } from "discord.js";
 import { Messages } from "../../locales/messages.js";
 import type { Command } from "../../types/command.js";
@@ -26,6 +27,8 @@ const command: Command = {
     ),
 
   async execute(interaction: ChatInputCommandInteraction) {
+    await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+
     const channel = interaction.options.getChannel("channel", true);
 
     const existing = await prisma.sourceChannel.findFirst({
@@ -34,13 +37,12 @@ const command: Command = {
         guild: { discordId: interaction.guildId! },
       },
     });
+
     if (!existing) {
-      await interaction.reply({
-        content: Messages.RESETCHANNEL_NOT_FOUND,
-        flags: ["Ephemeral"],
-      });
+      await interaction.editReply({ content: Messages.RESETCHANNEL_NOT_FOUND });
       return;
     }
+
     const confirmButton = new ButtonBuilder()
       .setCustomId(`resetchannel:confirm:${existing.id}`)
       .setLabel(Messages.CONFIRM)
@@ -58,11 +60,7 @@ const command: Command = {
       .setTitle(Messages.RESETCHANNEL_CONFIRM_TITLE)
       .setDescription(`<#${channel.id}>\n${Messages.RESETCHANNEL_CONFIRM_DESCRIPTION}`);
 
-    await interaction.reply({
-      embeds: [embed],
-      components: [row],
-      flags: ["Ephemeral"],
-    });
+    await interaction.editReply({ embeds: [embed], components: [row] });
   },
 };
 

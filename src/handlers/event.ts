@@ -4,12 +4,13 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import type { Client } from "discord.js";
 import type { Event } from "../types/event.js";
+import { isLoadableModule } from "../utils/isLoadable.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export async function loadEvents(client: Client): Promise<void> {
   try {
-    const files = readdirSync(join(__dirname, "../events")).filter((f) => f.endsWith(".js") || f.endsWith(".ts"));
+    const files = readdirSync(join(__dirname, "../events")).filter(isLoadableModule);
 
     for (const file of files) {
       const event: Event<any> = (await import(`../events/${file}`)).default;

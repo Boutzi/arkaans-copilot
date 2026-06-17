@@ -1,0 +1,12 @@
+app = 'arkaans-copilot'
+primary_region = 'cdg'
+
+[build]
+
+[env]
+  NODE_ENV = 'production'
+
+[[vm]]
+  memory = '256mb'
+  cpu_kind = 'shared'
+  cpus = 1

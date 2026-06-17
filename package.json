@@ -15,12 +15,12 @@
   },
   "homepage": "https://github.com/Boutzi/arkaans-copilot#readme",
   "engines": {
-    "node": ">=16.11.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "build": "tsc",
     "dev": "tsx watch src/index.ts",
-    "start": "node dist/index.js",
+    "start": "node dist/src/index.js",
     "prod": "npm run build && npm run start",
     "deploy": "tsx src/deploy.ts"
   },

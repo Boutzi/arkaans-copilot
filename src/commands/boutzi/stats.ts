@@ -3,6 +3,7 @@ import {
   ButtonBuilder,
   ButtonStyle,
   ChatInputCommandInteraction,
+  MessageFlags,
   PermissionFlagsBits,
   SlashCommandBuilder,
 } from "discord.js";
@@ -17,8 +18,8 @@ const command: Command = {
   async execute(interaction: ChatInputCommandInteraction) {
     const client = interaction.client;
     const button = new ButtonBuilder()
-      .setCustomId("ephemeralStatsButton")
-      .setLabel("Post stats")
+      .setCustomId("stats:post")
+      .setLabel(Messages.STATS_POST_BUTTON)
       .setStyle(ButtonStyle.Primary);
 
     if (interaction.user.id == process.env.BOUTZI_ID) {
@@ -29,13 +30,13 @@ const command: Command = {
       await interaction.reply({
         content: `Servers using Arkaans Copilot: ${client.guilds.cache.size}\n- ${serversNames.join("\n- ")}`,
         components: [new ActionRowBuilder<ButtonBuilder>().addComponents(button)],
-        flags: ["Ephemeral", "SuppressNotifications"],
+        flags: MessageFlags.Ephemeral | MessageFlags.SuppressNotifications,
       });
     } else {
       await interaction.reply({
         content: `Servers using Arkaans Copilot: ${client.guilds.cache.size}`,
         components: [new ActionRowBuilder<ButtonBuilder>().addComponents(button)],
-        flags: ["Ephemeral", "SuppressNotifications"],
+        flags: MessageFlags.Ephemeral | MessageFlags.SuppressNotifications,
       });
     }
   },

@@ -1,5 +1,5 @@
 // commands/admin/testwelcome.ts
-import { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits } from "discord.js";
+import { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits, MessageFlags } from "discord.js";
 import type { Command } from "../../types/command.js";
 import { Messages } from "../../locales/messages.js";
 
@@ -11,7 +11,7 @@ const command: Command = {
   async execute(interaction: ChatInputCommandInteraction) {
     const member = interaction.guild!.members.cache.get(interaction.user.id)!;
     interaction.client.emit("guildMemberAdd", member);
-    await interaction.reply({ content: Messages.TESTWELCOME_SUCCESS, flags: ["Ephemeral"] });
+    await interaction.reply({ content: Messages.TESTWELCOME_SUCCESS, flags: MessageFlags.Ephemeral });
   },
 };
 

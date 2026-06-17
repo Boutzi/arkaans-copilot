@@ -2,6 +2,8 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+RUN apk add --no-cache python3 make g++ cairo-dev pango-dev libjpeg-turbo-dev giflib-dev librsvg-dev
+
 COPY package*.json ./
 RUN npm ci
 
@@ -10,12 +12,16 @@ COPY prisma.config.ts ./
 COPY prisma/ ./prisma/
 COPY src/ ./src/
 
-RUN npm run build
 RUN npx prisma generate
+RUN npm run build
+
+# ---
 
 FROM node:20-alpine AS runner
 
 WORKDIR /app
+
+RUN apk add --no-cache cairo pango libjpeg-turbo giflib librsvg
 
 COPY package*.json ./
 RUN npm ci --omit=dev

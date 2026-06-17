@@ -1,44 +1,62 @@
 export const Messages = {
-  ARKAANS_INVITE_DESCRIPTION: "Invitation link to the official Arkaans server",
+  // Shared
   CONFIRM: "Confirm",
   CANCEL: "Cancel",
-  STATS_DESCRIPTION: "Display stats about Arkaans Copilot",
-  HELP_DESCRIPTION: "Learn about Arkaans Copilot with the complete commands documentation.",
-  HELP_ADMIN: "Admin commands",
-  HELP_COMMON: "Common commands",
-  HELP_ADMIN_SETCHANNEL_DESCRIPTION:
-    "Defines a voice channel as the target to create temporary channels when the user accesses it.",
-  HELP_ADMIN_RESETCHANNEL_DESCRIPTION: "Clears the existing list for a selected channel.",
-  HELP_ADMIN_RESETALLCHANNEL_DESCRIPTION:
-    "Clears all existing lists on the server; caution, this command resets everything.",
-  HELP_COMMON_ARKAANS_DESCRIPTION: "Returns an invitation link to the official Arkaans Discord server.",
-  SETCHANNEL_DESCRIPTION: "Set the channel for temporary voice channels.",
-  SETCHANNEL_SELECT_CHANNEL_DESCRIPTION: "Select the channel to configure.",
-  SETCHANNEL_MODAL_NAMES_LABEL: "Enter names (one per line)",
-  SETCHANNEL_MODAL_NAMES_PLACEHOLDER: "Enter the names for the temporary channels (one per line).",
-  SETCHANNEL_UPDATED_TITLE: "Channel updated successfully",
-  SETCHANNEL_CREATED_TITLE: "Channel created successfully",
-  RESETCHANNEL_DESCRIPTION: "Reset the channel configuration.",
-  RESETCHANNEL_SELECT_CHANNEL_DESCRIPTION: "Select the channel you want to reset",
-  RESETCHANNEL_NOT_FOUND: "The selected channel is not configured.",
-  RESETCHANNEL_CONFIRM_TITLE: "Confirm channel reset",
-  RESETCHANNEL_CONFIRM_DESCRIPTION: "Are you sure you want to reset the configuration for this channel?",
-  RESETCHANNEL_CANCELLED: "Channel reset action has been cancelled.",
-  RESETCHANNEL_SUCCESS_TITLE: "Channel reset successfully",
-  RESETCHANNEL_SUCCESS_DESCRIPTION: "The channel configuration has been successfully reset.",
-  RESETALLCHANNEL_DESCRIPTION: "Reset all channel configurations.",
-  RESETALLCHANNEL_CONFIRM_TITLE: "Confirm all channels reset",
-  RESETALLCHANNEL_CONFIRM_DESCRIPTION: "Are you sure you want to reset the configuration for all channels?",
-  RESETALLCHANNEL_CANCELLED: "All channels reset action has been cancelled.",
-  RESETALLCHANNEL_SUCCESS_TITLE: "All channels reset successfully",
-  RESETALLCHANNEL_SUCCESS_DESCRIPTION: "All channel configurations have been successfully reset.",
-  SETWELCOME_DESCRIPTION: "Set the welcome message configuration for the server.",
-  SETWELCOME_CHANNEL_DESCRIPTION: "Select the channel where the welcome message will be sent.",
-  SETWELCOME_IMAGE_DESCRIPTION: "Enter the URL of the background image for the welcome message.",
-  SETWELCOME_ACTIVATED_DESCRIPTION: "Activate or deactivate the welcome message.",
-  SETWELCOME_COLOR_DESCRIPTION: "Select the color for the welcome message embed.",
-  SETWELCOME_QUOTE_DESCRIPTION: "Enter a custom quote for the welcome message.",
-  SETWELCOME_SUCCESS_TITLE: "Welcome message configuration updated successfully",
-  TESTWELCOME_DESCRIPTION: "Test the welcome message",
-  TESTWELCOME_SUCCESS: "Welcome test triggered!",
+
+  // /arkaans
+  ARKAANS_INVITE_DESCRIPTION: "Get the invite link to the official Arkaans server",
+
+  // /stats
+  STATS_DESCRIPTION: "Show Arkaans Copilot usage stats",
+  STATS_POST_BUTTON: "Post stats",
+
+  // /help
+  HELP_DESCRIPTION: "Browse all available commands",
+  HELP_ADMIN: "Admin",
+  HELP_COMMON: "General",
+  HELP_ADMIN_SETCHANNEL_DESCRIPTION: "Configure a voice channel to spawn temporary channels on join",
+  HELP_ADMIN_RESETCHANNEL_DESCRIPTION: "Remove the configuration for a specific voice channel",
+  HELP_ADMIN_RESETALLCHANNEL_DESCRIPTION: "Remove all channel configurations on this server",
+  HELP_ADMIN_SETWELCOME_DESCRIPTION: "Set up the welcome message sent when a member joins",
+  HELP_ADMIN_TESTWELCOME_DESCRIPTION: "Trigger the welcome message to preview it",
+  HELP_COMMON_ARKAANS_DESCRIPTION: "Get the invite link to the official Arkaans Discord server",
+
+  // /setchannel
+  SETCHANNEL_DESCRIPTION: "Configure a voice channel for temporary channel creation",
+  SETCHANNEL_SELECT_CHANNEL_DESCRIPTION: "Voice channel to configure",
+  SETCHANNEL_MODAL_NAMES_LABEL: "Channel names (one per line)",
+  SETCHANNEL_MODAL_NAMES_PLACEHOLDER: "General\nGaming\nMusic",
+  SETCHANNEL_UPDATED_TITLE: "Channel updated",
+  SETCHANNEL_CREATED_TITLE: "Channel configured",
+
+  // /resetchannel
+  RESETCHANNEL_DESCRIPTION: "Remove the configuration for a voice channel",
+  RESETCHANNEL_SELECT_CHANNEL_DESCRIPTION: "Voice channel to reset",
+  RESETCHANNEL_NOT_FOUND: "This channel has no configuration to remove.",
+  RESETCHANNEL_CONFIRM_TITLE: "Reset channel?",
+  RESETCHANNEL_CONFIRM_DESCRIPTION: "This will permanently remove the configuration for this channel.",
+  RESETCHANNEL_CANCELLED: "Reset cancelled.",
+  RESETCHANNEL_SUCCESS_TITLE: "Channel reset",
+  RESETCHANNEL_SUCCESS_DESCRIPTION: "The channel configuration has been removed.",
+
+  // /resetallchannels
+  RESETALLCHANNEL_DESCRIPTION: "Remove all channel configurations on this server",
+  RESETALLCHANNEL_CONFIRM_TITLE: "Reset all channels?",
+  RESETALLCHANNEL_CONFIRM_DESCRIPTION: "This will permanently remove every channel configuration on this server.",
+  RESETALLCHANNEL_CANCELLED: "Reset cancelled.",
+  RESETALLCHANNEL_SUCCESS_TITLE: "All channels reset",
+  RESETALLCHANNEL_SUCCESS_DESCRIPTION: "All channel configurations have been removed.",
+
+  // /setwelcome
+  SETWELCOME_DESCRIPTION: "Configure the welcome message for new members",
+  SETWELCOME_CHANNEL_DESCRIPTION: "Channel where the welcome message will be posted",
+  SETWELCOME_IMAGE_DESCRIPTION: "Background image URL for the welcome card",
+  SETWELCOME_ACTIVATED_DESCRIPTION: "Enable or disable the welcome message",
+  SETWELCOME_COLOR_DESCRIPTION: "Hex color for the welcome card text",
+  SETWELCOME_QUOTE_DESCRIPTION: "Custom message shown on the welcome card",
+  SETWELCOME_SUCCESS_TITLE: "Welcome message updated",
+
+  // /testwelcome
+  TESTWELCOME_DESCRIPTION: "Preview the welcome message as if you just joined",
+  TESTWELCOME_SUCCESS: "Welcome preview sent!",
 } as const;
