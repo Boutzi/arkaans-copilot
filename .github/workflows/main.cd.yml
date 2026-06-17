@@ -26,6 +26,8 @@ jobs:
         run: |
           echo "DISCORD_BOT_TOKEN=${{ secrets.DISCORD_BOT_TOKEN }}" >> .env
           echo "DISCORD_CLIENT_ID=${{ secrets.DISCORD_CLIENT_ID }}" >> .env
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+          echo "BOUTZI_ID=${{ secrets.BOUTZI_ID }}" >> .env
           npx tsx src/deploy.ts
 
       - uses: superfly/flyctl-actions/setup-flyctl@master
