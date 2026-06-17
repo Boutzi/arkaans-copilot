@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/Boutzi/arkaans-copilot#readme",
   "engines": {
-    "node": ">=16.11.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "build": "tsc",
