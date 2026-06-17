@@ -27,6 +27,7 @@
   "HELP_CMD_SETWELCOME": "设置成员加入时发送的欢迎消息",
   "HELP_CMD_TESTWELCOME": "触发欢迎消息进行预览",
   "HELP_CMD_ARKAANS": "获取官方 Arkaans Discord 服务器的邀请链接",
+  "HELP_CMD_SETLANGUAGE": "设置此服务器的机器人语言",
 
   "SETCHANNEL_MODAL_LABEL": "频道名称（每行一个）",
   "SETCHANNEL_MODAL_PLACEHOLDER": "综合\n游戏\n音乐",

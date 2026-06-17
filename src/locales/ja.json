@@ -27,6 +27,7 @@
   "HELP_CMD_SETWELCOME": "メンバー参加時に送信されるウェルカムメッセージを設定",
   "HELP_CMD_TESTWELCOME": "ウェルカムメッセージをプレビューするためにトリガー",
   "HELP_CMD_ARKAANS": "公式Arkaans Discordサーバーへの招待リンクを取得",
+  "HELP_CMD_SETLANGUAGE": "このサーバーのボット言語を設定",
 
   "SETCHANNEL_MODAL_LABEL": "チャンネル名（1行に1つ）",
   "SETCHANNEL_MODAL_PLACEHOLDER": "一般\nゲーム\n音楽",
