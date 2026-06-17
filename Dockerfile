@@ -21,7 +21,7 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-RUN apk add --no-cache cairo pango libjpeg-turbo giflib librsvg
+RUN apk add --no-cache cairo pango libjpeg-turbo giflib librsvg fontconfig ttf-dejavu
 
 COPY package*.json ./
 RUN npm ci --omit=dev
