@@ -1,4 +1,10 @@
-import { createCanvas, loadImage } from "@napi-rs/canvas";
+import { createCanvas, loadImage, GlobalFonts } from "@napi-rs/canvas";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+GlobalFonts.registerFromPath(join(__dirname, "../assets/fonts/Poppins-Bold.ttf"), "Poppins-Bold");
+GlobalFonts.registerFromPath(join(__dirname, "../assets/fonts/Poppins-SemiBold.ttf"), "Poppins-SemiBold");
 import axios from "axios";
 import type { WelcomeImageOptions } from "../types/welcomeImage.js";
 
@@ -64,7 +70,7 @@ export async function generateWelcomeImage(options: WelcomeImageOptions): Promis
   ctx.shadowOffsetX = 4;
   ctx.shadowOffsetY = 4;
 
-  ctx.font = "bold 35px sans-serif";
+  ctx.font = "35px Poppins-SemiBold";
   ctx.fillStyle = "white";
   ctx.fillText("WELCOME", CENTER_X, CENTER_Y + 40);
   ctx.lineWidth = 0.5;
@@ -72,7 +78,7 @@ export async function generateWelcomeImage(options: WelcomeImageOptions): Promis
   ctx.strokeText("WELCOME", CENTER_X, CENTER_Y + 40);
 
   // Nom du membre
-  ctx.font = "bold 70px sans-serif";
+  ctx.font = "70px Poppins-Bold";
   ctx.fillStyle = hexColor;
   ctx.fillText(username.toUpperCase(), CENTER_X, CENTER_Y + 105);
   ctx.lineWidth = 0.5;
@@ -81,7 +87,7 @@ export async function generateWelcomeImage(options: WelcomeImageOptions): Promis
 
   // Quote
   const displayQuote = quote ?? `Welcome to ${guildName}!`;
-  ctx.font = "bold 25px sans-serif";
+  ctx.font = "25px Poppins-SemiBold";
   ctx.fillStyle = "white";
   ctx.fillText(displayQuote, CENTER_X, CENTER_Y + 140);
 
@@ -106,7 +112,7 @@ export async function generateWelcomeImage(options: WelcomeImageOptions): Promis
 
     // Nom de la guild
     ctx.textAlign = "left";
-    ctx.font = "20px sans-serif";
+    ctx.font = "20px Poppins-SemiBold";
     ctx.fillStyle = "white";
     ctx.shadowColor = "rgba(0, 0, 0, 0.95)";
     ctx.shadowBlur = 8;
