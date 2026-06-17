@@ -46,8 +46,9 @@ This repository contains **v3** — a full rewrite in TypeScript with a producti
 
 | Command    | Description                                    |
 | ---------- | ---------------------------------------------- |
-| `/arkaans` | Invitation link to the official Arkaans server |
-| `/help`    | Display all available commands                 |
+| `/arkaans`     | Invitation link to the official Arkaans server |
+| `/help`        | Display all available commands                 |
+| `/setlanguage` | Set the bot language for this server           |
 
 ---
 
@@ -62,9 +63,10 @@ This repository contains **v3** — a full rewrite in TypeScript with a producti
 | ORM              | Prisma 7                         |
 | Queue            | p-queue                          |
 | Image generation | @napi-rs/canvas                  |
-| Containerization | Docker + GHCR                    |
+| i18n             | i18next (8 languages)            |
+| Containerization | Docker                           |
 | CI/CD            | GitHub Actions                   |
-| Hosting          | Oracle Cloud Free Tier / Railway |
+| Hosting          | Fly.io                           |
 
 ---
 
@@ -140,11 +142,11 @@ npm run prod
 ## CI/CD Pipeline
 
 ```
-Push / PR  →  Lint + Type check
-Merge main →  Build Docker image → Push to GHCR → Deploy
+Push / PR  →  Type check (tsc --noEmit)
+Merge main →  Build Docker image (remote) → Deploy to Fly.io
 ```
 
-Managed via GitHub Actions. The Docker image is published to GitHub Container Registry and deployed automatically on merge to `main`.
+Managed via GitHub Actions. The Docker image is built remotely and deployed to Fly.io automatically on merge to `main`.
 
 ---
 
@@ -162,12 +164,13 @@ Managed via GitHub Actions. The Docker image is published to GitHub Container Re
 - [x] Crash recovery on restart
 - [x] Docker setup
 - [x] GitHub Actions CI/CD
+- [x] Fly.io deployment
+- [x] i18n — 8 languages (en, fr, de, es, it, ko, ja, zh) with per-guild setting
 
 ### v3.x — Future
 
 - [ ] Monitoring (Sentry)
 - [ ] Web dashboard for guild admins
-- [ ] Internationalization (i18n) — multi-language support via i18next
 
 ---
 
