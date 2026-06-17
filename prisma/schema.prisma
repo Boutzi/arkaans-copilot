@@ -43,7 +43,7 @@ model TempChannel {
   createdAt          DateTime          @default(now()) @db.Timestamp(3) @map("created_at")
   updatedAt          DateTime          @updatedAt @db.Timestamp(3) @map("updated_at")
 
-  sourceChannel      SourceChannel     @relation(fields: [sourceChannelId], references: [id])
+  sourceChannel      SourceChannel     @relation(fields: [sourceChannelId], references: [id], onDelete: Cascade)
 
   @@map("temp_channel")
 }
