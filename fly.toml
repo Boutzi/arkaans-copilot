@@ -6,6 +6,11 @@ primary_region = 'cdg'
 [env]
   NODE_ENV = 'production'
 
+[machines]
+  auto_stop = "off"
+  auto_start = false
+  min_count = 1
+
 [[vm]]
   memory = '256mb'
   cpu_kind = 'shared'
