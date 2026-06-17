@@ -7,43 +7,63 @@ import {
   MessageFlags,
 } from "discord.js";
 import type { Command } from "../../types/command.js";
-import { Messages } from "../../locales/messages.js";
+import { t, buildLocalizations } from "../../utils/i18n.js";
+import { getGuildLang } from "../../utils/getLang.js";
 import { prisma } from "../../utils/prisma.js";
 
 const command: Command = {
   data: new SlashCommandBuilder()
     .setName("setwelcome")
-    .setDescription(Messages.SETWELCOME_DESCRIPTION)
+    .setDescription(t("SETWELCOME_DESCRIPTION", "en"))
+    .setDescriptionLocalizations(buildLocalizations("SETWELCOME_DESCRIPTION"))
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addStringOption((option) =>
-      option.setName("image").setDescription(Messages.SETWELCOME_IMAGE_DESCRIPTION).setRequired(true),
+      option
+        .setName("image")
+        .setDescription(t("SETWELCOME_IMAGE_OPTION", "en"))
+        .setDescriptionLocalizations(buildLocalizations("SETWELCOME_IMAGE_OPTION"))
+        .setRequired(true),
     )
     .addChannelOption((option) =>
       option
         .setName("channel")
-        .setDescription(Messages.SETWELCOME_CHANNEL_DESCRIPTION)
+        .setDescription(t("SETWELCOME_CHANNEL_OPTION", "en"))
+        .setDescriptionLocalizations(buildLocalizations("SETWELCOME_CHANNEL_OPTION"))
         .addChannelTypes(ChannelType.GuildText)
         .setRequired(false),
     )
     .addBooleanOption((option) =>
-      option.setName("activated").setDescription(Messages.SETWELCOME_ACTIVATED_DESCRIPTION).setRequired(false),
+      option
+        .setName("activated")
+        .setDescription(t("SETWELCOME_ACTIVATED_OPTION", "en"))
+        .setDescriptionLocalizations(buildLocalizations("SETWELCOME_ACTIVATED_OPTION"))
+        .setRequired(false),
     )
     .addStringOption((option) =>
-      option.setName("color").setDescription(Messages.SETWELCOME_COLOR_DESCRIPTION).setRequired(false),
+      option
+        .setName("color")
+        .setDescription(t("SETWELCOME_COLOR_OPTION", "en"))
+        .setDescriptionLocalizations(buildLocalizations("SETWELCOME_COLOR_OPTION"))
+        .setRequired(false),
     )
     .addStringOption((option) =>
-      option.setName("quote").setDescription(Messages.SETWELCOME_QUOTE_DESCRIPTION).setRequired(false),
+      option
+        .setName("quote")
+        .setDescription(t("SETWELCOME_QUOTE_OPTION", "en"))
+        .setDescriptionLocalizations(buildLocalizations("SETWELCOME_QUOTE_OPTION"))
+        .setRequired(false),
     ),
 
   async execute(interaction: ChatInputCommandInteraction) {
     await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+    const lang = await getGuildLang(interaction.guildId!);
 
     const channel =
       interaction.options.getChannel("channel") ??
       interaction.guild!.channels.cache.get(interaction.guild!.systemChannelId!);
 
     if (!channel) {
-      await interaction.editReply({ content: "No welcome channel found. Please specify a channel." });
+      await interaction.editReply({ content: t("SETWELCOME_NO_CHANNEL", lang) });
       return;
     }
 
@@ -84,12 +104,12 @@ const command: Command = {
 
     const embed = new EmbedBuilder()
       .setColor(0x5865f2)
-      .setTitle(Messages.SETWELCOME_SUCCESS_TITLE)
+      .setTitle(t("SETWELCOME_SUCCESS_TITLE", lang))
       .addFields(
-        { name: "Channel", value: `<#${channel.id}>`, inline: true },
-        { name: "Activated", value: activated ? "✅" : "❌", inline: true },
-        { name: "Color", value: color, inline: true },
-        { name: "Quote", value: quote ?? "Discord default", inline: false },
+        { name: t("SETWELCOME_FIELD_CHANNEL", lang), value: `<#${channel.id}>`, inline: true },
+        { name: t("SETWELCOME_FIELD_ACTIVE", lang), value: activated ? "✅" : "❌", inline: true },
+        { name: t("SETWELCOME_FIELD_COLOR", lang), value: color, inline: true },
+        { name: t("SETWELCOME_FIELD_QUOTE", lang), value: quote ?? t("SETWELCOME_FIELD_QUOTE_DEFAULT", lang), inline: false },
       )
       .setThumbnail(image);
 

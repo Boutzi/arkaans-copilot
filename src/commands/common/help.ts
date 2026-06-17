@@ -1,26 +1,33 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, MessageFlags } from "discord.js";
-import { Messages } from "../../locales/messages.js";
 import type { Command } from "../../types/command.js";
+import { t, buildLocalizations } from "../../utils/i18n.js";
+import { getGuildLang } from "../../utils/getLang.js";
 
 const command: Command = {
-  data: new SlashCommandBuilder().setName("help").setDescription(Messages.HELP_DESCRIPTION),
+  data: new SlashCommandBuilder()
+    .setName("help")
+    .setDescription(t("HELP_DESCRIPTION", "en"))
+    .setDescriptionLocalizations(buildLocalizations("HELP_DESCRIPTION")),
+
   async execute(interaction: ChatInputCommandInteraction) {
+    const lang = await getGuildLang(interaction.guildId!);
+
     const embed = new EmbedBuilder()
       .setTitle("Arkaans Copilot — Help")
       .addFields(
         {
-          name: Messages.HELP_ADMIN,
+          name: t("HELP_ADMIN", lang),
           value: [
-            `\`/setchannel\` — ${Messages.HELP_ADMIN_SETCHANNEL_DESCRIPTION}`,
-            `\`/resetchannel\` — ${Messages.HELP_ADMIN_RESETCHANNEL_DESCRIPTION}`,
-            `\`/resetallchannels\` — ${Messages.HELP_ADMIN_RESETALLCHANNEL_DESCRIPTION}`,
-            `\`/setwelcome\` — ${Messages.HELP_ADMIN_SETWELCOME_DESCRIPTION}`,
-            `\`/testwelcome\` — ${Messages.HELP_ADMIN_TESTWELCOME_DESCRIPTION}`,
+            `\`/setchannel\` — ${t("HELP_CMD_SETCHANNEL", lang)}`,
+            `\`/resetchannel\` — ${t("HELP_CMD_RESETCHANNEL", lang)}`,
+            `\`/resetallchannels\` — ${t("HELP_CMD_RESETALLCHANNEL", lang)}`,
+            `\`/setwelcome\` — ${t("HELP_CMD_SETWELCOME", lang)}`,
+            `\`/testwelcome\` — ${t("HELP_CMD_TESTWELCOME", lang)}`,
           ].join("\n"),
         },
         {
-          name: Messages.HELP_COMMON,
-          value: `\`/arkaans\` — ${Messages.HELP_COMMON_ARKAANS_DESCRIPTION}`,
+          name: t("HELP_COMMON", lang),
+          value: `\`/arkaans\` — ${t("HELP_CMD_ARKAANS", lang)}`,
         },
       )
       .setColor(0x5865f2);

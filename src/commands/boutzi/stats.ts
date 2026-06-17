@@ -7,19 +7,20 @@ import {
   PermissionFlagsBits,
   SlashCommandBuilder,
 } from "discord.js";
-import { Messages } from "../../locales/messages.js";
+import { t, buildLocalizations } from "../../utils/i18n.js";
 import type { Command } from "../../types/command.js";
 
 const command: Command = {
   data: new SlashCommandBuilder()
     .setName("stats")
-    .setDescription(Messages.STATS_DESCRIPTION)
+    .setDescription(t("STATS_DESCRIPTION", "en"))
+    .setDescriptionLocalizations(buildLocalizations("STATS_DESCRIPTION"))
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction: ChatInputCommandInteraction) {
     const client = interaction.client;
     const button = new ButtonBuilder()
       .setCustomId("stats:post")
-      .setLabel(Messages.STATS_POST_BUTTON)
+      .setLabel(t("STATS_POST_BUTTON", "en"))
       .setStyle(ButtonStyle.Primary);
 
     if (interaction.user.id == process.env.BOUTZI_ID) {

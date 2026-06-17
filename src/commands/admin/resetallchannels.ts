@@ -8,37 +8,39 @@ import {
   ButtonStyle,
   MessageFlags,
 } from "discord.js";
-import { Messages } from "../../locales/messages.js";
 import type { Command } from "../../types/command.js";
+import { t, buildLocalizations } from "../../utils/i18n.js";
+import { getGuildLang } from "../../utils/getLang.js";
 
 const command: Command = {
   data: new SlashCommandBuilder()
     .setName("resetallchannel")
-    .setDescription(Messages.RESETALLCHANNEL_DESCRIPTION)
+    .setDescription(t("RESETALLCHANNEL_DESCRIPTION", "en"))
+    .setDescriptionLocalizations(buildLocalizations("RESETALLCHANNEL_DESCRIPTION"))
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
+
   async execute(interaction: ChatInputCommandInteraction) {
+    await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+    const lang = await getGuildLang(interaction.guildId!);
+
     const confirmButton = new ButtonBuilder()
-      .setCustomId(`resetallchannel:confirm`)
-      .setLabel(Messages.CONFIRM)
+      .setCustomId("resetallchannel:confirm")
+      .setLabel(t("CONFIRM", lang))
       .setStyle(ButtonStyle.Danger);
 
     const cancelButton = new ButtonBuilder()
       .setCustomId("resetallchannel:cancel")
-      .setLabel(Messages.CANCEL)
+      .setLabel(t("CANCEL", lang))
       .setStyle(ButtonStyle.Secondary);
 
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(confirmButton, cancelButton);
 
     const embed = new EmbedBuilder()
       .setColor(0xed4245)
-      .setTitle(Messages.RESETALLCHANNEL_CONFIRM_TITLE)
-      .setDescription(Messages.RESETALLCHANNEL_CONFIRM_DESCRIPTION);
+      .setTitle(t("RESETALLCHANNEL_CONFIRM_TITLE", lang))
+      .setDescription(t("RESETALLCHANNEL_CONFIRM_DESC", lang));
 
-    await interaction.reply({
-      embeds: [embed],
-      components: [row],
-      flags: MessageFlags.Ephemeral,
-    });
+    await interaction.editReply({ embeds: [embed], components: [row] });
   },
 };
 
