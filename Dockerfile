@@ -21,13 +21,14 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-RUN apk add --no-cache cairo pango libjpeg-turbo giflib librsvg fontconfig ttf-dejavu
+RUN apk add --no-cache cairo pango libjpeg-turbo giflib librsvg fontconfig
 
 COPY package*.json ./
 RUN npm ci --omit=dev
 
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/src/generated ./src/generated
+COPY --from=builder /app/src/assets ./dist/src/assets
 COPY prisma/ ./prisma/
 
 CMD ["node", "dist/src/index.js"]
