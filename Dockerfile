@@ -29,6 +29,7 @@ RUN npm ci --omit=dev
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/src/generated ./src/generated
 COPY --from=builder /app/src/assets ./dist/src/assets
+COPY --from=builder /app/src/locales ./dist/src/locales
 COPY prisma/ ./prisma/
 
 CMD ["node", "dist/src/index.js"]
