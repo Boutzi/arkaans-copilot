@@ -23,6 +23,7 @@ const command: Command = {
             `\`/resetallchannels\` — ${t("HELP_CMD_RESETALLCHANNEL", lang)}`,
             `\`/setwelcome\` — ${t("HELP_CMD_SETWELCOME", lang)}`,
             `\`/testwelcome\` — ${t("HELP_CMD_TESTWELCOME", lang)}`,
+            `\`/setlanguage\` — ${t("HELP_CMD_SETLANGUAGE", lang)}`,
           ].join("\n"),
         },
         {

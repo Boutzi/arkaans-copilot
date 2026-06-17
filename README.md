@@ -41,14 +41,14 @@ This repository contains **v3** — a full rewrite in TypeScript with a producti
 | `/resetallchannels` | Remove all source channel configurations for the server               |
 | `/setwelcome`       | Set up a customizable welcome image for new members                   |
 | `/testwelcome`      | Trigger the welcome message manually to preview the result            |
+| `/setlanguage`      | Set the bot language for this server                                  |
 
 ### Common commands
 
 | Command    | Description                                    |
 | ---------- | ---------------------------------------------- |
-| `/arkaans`     | Invitation link to the official Arkaans server |
-| `/help`        | Display all available commands                 |
-| `/setlanguage` | Set the bot language for this server           |
+| `/arkaans` | Invitation link to the official Arkaans server |
+| `/help`    | Display all available commands                 |
 
 ---
 

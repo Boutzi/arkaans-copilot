@@ -27,6 +27,7 @@
   "HELP_CMD_SETWELCOME": "Richtet die Willkommensnachricht für neue Mitglieder ein",
   "HELP_CMD_TESTWELCOME": "Löst die Willkommensnachricht zur Vorschau aus",
   "HELP_CMD_ARKAANS": "Einladungslink zum offiziellen Arkaans Discord-Server erhalten",
+  "HELP_CMD_SETLANGUAGE": "Botsprache für diesen Server festlegen",
 
   "SETCHANNEL_MODAL_LABEL": "Kanalnamen (einer pro Zeile)",
   "SETCHANNEL_MODAL_PLACEHOLDER": "Allgemein\nGaming\nMusik",

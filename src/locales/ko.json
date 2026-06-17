@@ -27,6 +27,7 @@
   "HELP_CMD_SETWELCOME": "새 멤버 입장 시 전송되는 환영 메시지 설정",
   "HELP_CMD_TESTWELCOME": "환영 메시지를 미리 보기 위해 트리거",
   "HELP_CMD_ARKAANS": "공식 Arkaans Discord 서버 초대 링크 받기",
+  "HELP_CMD_SETLANGUAGE": "이 서버의 봇 언어 설정",
 
   "SETCHANNEL_MODAL_LABEL": "채널 이름 (줄당 하나)",
   "SETCHANNEL_MODAL_PLACEHOLDER": "일반\n게임\n음악",
