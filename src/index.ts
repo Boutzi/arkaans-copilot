@@ -1,4 +1,5 @@
 import "dotenv/config";
+import "./utils/i18n.js";
 import { logger } from "./utils/logger.js";
 import { client } from "./utils/client.js";
 import { connectDatabase } from "./utils/prisma.js";

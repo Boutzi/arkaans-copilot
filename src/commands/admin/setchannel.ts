@@ -9,22 +9,27 @@ import {
   ActionRowBuilder,
 } from "discord.js";
 import type { Command } from "../../types/command.js";
-import { Messages } from "../../locales/messages.js";
+import { t, buildLocalizations } from "../../utils/i18n.js";
+import { getGuildLang } from "../../utils/getLang.js";
 import { prisma } from "../../utils/prisma.js";
 
 const command: Command = {
   data: new SlashCommandBuilder()
     .setName("setchannel")
-    .setDescription(Messages.SETCHANNEL_DESCRIPTION)
+    .setDescription(t("SETCHANNEL_DESCRIPTION", "en"))
+    .setDescriptionLocalizations(buildLocalizations("SETCHANNEL_DESCRIPTION"))
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addChannelOption((option) =>
       option
         .setName("channel")
-        .setDescription(Messages.SETCHANNEL_SELECT_CHANNEL_DESCRIPTION)
+        .setDescription(t("SETCHANNEL_CHANNEL_OPTION", "en"))
+        .setDescriptionLocalizations(buildLocalizations("SETCHANNEL_CHANNEL_OPTION"))
         .addChannelTypes(ChannelType.GuildVoice)
         .setRequired(true),
     ),
+
   async execute(interaction: ChatInputCommandInteraction) {
+    const lang = await getGuildLang(interaction.guildId!);
     const channel = interaction.options.getChannel("channel", true);
 
     const existing = await prisma.sourceChannel.findFirst({
@@ -38,9 +43,9 @@ const command: Command = {
 
     const namesInput = new TextInputBuilder()
       .setCustomId("namesInput")
-      .setLabel(Messages.SETCHANNEL_MODAL_NAMES_LABEL)
+      .setLabel(t("SETCHANNEL_MODAL_LABEL", lang))
       .setStyle(TextInputStyle.Paragraph)
-      .setPlaceholder(Messages.SETCHANNEL_MODAL_NAMES_PLACEHOLDER)
+      .setPlaceholder(t("SETCHANNEL_MODAL_PLACEHOLDER", lang))
       .setValue(currentNames)
       .setRequired(true);
 

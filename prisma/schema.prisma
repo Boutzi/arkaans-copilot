@@ -11,6 +11,7 @@ model Guild {
   id                 String            @id @default(cuid())
   discordId          String            @unique @db.VarChar(20) @map("discord_id")
   guildName          String            @db.VarChar(100) @map("guild_name")
+  language           String            @default("en") @db.VarChar(5) @map("language")
   createdAt          DateTime          @default(now()) @db.Timestamp(3) @map("created_at")
   updatedAt          DateTime          @updatedAt @db.Timestamp(3) @map("updated_at")
 
