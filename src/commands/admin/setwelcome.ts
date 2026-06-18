@@ -22,7 +22,7 @@ const command: Command = {
         .setName("image")
         .setDescription(t("SETWELCOME_IMAGE_OPTION", "en"))
         .setDescriptionLocalizations(buildLocalizations("SETWELCOME_IMAGE_OPTION"))
-        .setRequired(true),
+        .setRequired(false),
     )
     .addChannelOption((option) =>
       option
@@ -52,25 +52,25 @@ const command: Command = {
         .setDescription(t("SETWELCOME_QUOTE_OPTION", "en"))
         .setDescriptionLocalizations(buildLocalizations("SETWELCOME_QUOTE_OPTION"))
         .setRequired(false),
+    )
+    .addStringOption((option) =>
+      option
+        .setName("quote_color")
+        .setDescription(t("SETWELCOME_QUOTE_COLOR_OPTION", "en"))
+        .setDescriptionLocalizations(buildLocalizations("SETWELCOME_QUOTE_COLOR_OPTION"))
+        .setRequired(false),
+    )
+    .addBooleanOption((option) =>
+      option
+        .setName("show_guild_badge")
+        .setDescription(t("SETWELCOME_GUILD_BADGE_OPTION", "en"))
+        .setDescriptionLocalizations(buildLocalizations("SETWELCOME_GUILD_BADGE_OPTION"))
+        .setRequired(false),
     ),
 
   async execute(interaction: ChatInputCommandInteraction) {
     await interaction.deferReply({ flags: MessageFlags.Ephemeral });
     const lang = await getGuildLang(interaction.guildId!);
-
-    const channel =
-      interaction.options.getChannel("channel") ??
-      interaction.guild!.channels.cache.get(interaction.guild!.systemChannelId!);
-
-    if (!channel) {
-      await interaction.editReply({ content: t("SETWELCOME_NO_CHANNEL", lang) });
-      return;
-    }
-
-    const image = interaction.options.getString("image", true);
-    const activated = interaction.options.getBoolean("activated") ?? true;
-    const color = interaction.options.getString("color") ?? "#FFFFFF";
-    const quote = interaction.options.getString("quote") ?? null;
 
     const guild = await prisma.guild.upsert({
       where: { discordId: interaction.guildId! },
@@ -81,6 +81,33 @@ const command: Command = {
       },
     });
 
+    const existing = await prisma.welcomeConfig.findFirst({ where: { guildId: guild.id } });
+
+    const channelOption = interaction.options.getChannel("channel");
+    const resolvedChannel =
+      channelOption ??
+      (existing ? interaction.guild!.channels.cache.get(existing.welcomeChannelId) : null) ??
+      interaction.guild!.channels.cache.get(interaction.guild!.systemChannelId!);
+
+    if (!resolvedChannel) {
+      await interaction.editReply({ content: t("SETWELCOME_NO_CHANNEL", lang) });
+      return;
+    }
+
+    const image = interaction.options.getString("image") ?? existing?.backgroundImageUrl;
+    if (!image) {
+      await interaction.editReply({ content: t("SETWELCOME_NO_IMAGE", lang) });
+      return;
+    }
+
+    const activated = interaction.options.getBoolean("activated") ?? existing?.isActive ?? true;
+    const color = interaction.options.getString("color") ?? existing?.hexColor ?? "#FFFFFF";
+    const quote = interaction.options.getString("quote") ?? existing?.welcomeMessage ?? null;
+    const showGuildBadge = interaction.options.getBoolean("show_guild_badge") ?? existing?.showGuildBadge ?? true;
+    const quoteColor = interaction.options.getString("quote_color") ?? existing?.quoteColor ?? color;
+
+    const channel = resolvedChannel;
+
     await prisma.welcomeConfig.upsert({
       where: { guildId: guild.id },
       update: {
@@ -90,6 +117,8 @@ const command: Command = {
         isActive: activated,
         hexColor: color,
         welcomeMessage: quote,
+        showGuildBadge,
+        quoteColor,
       },
       create: {
         welcomeChannelId: channel.id,
@@ -98,6 +127,8 @@ const command: Command = {
         isActive: activated,
         hexColor: color,
         welcomeMessage: quote,
+        showGuildBadge,
+        quoteColor,
         guild: { connect: { id: guild.id } },
       },
     });

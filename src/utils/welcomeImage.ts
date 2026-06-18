@@ -5,11 +5,19 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 GlobalFonts.registerFromPath(join(__dirname, "../assets/fonts/Poppins-Bold.ttf"), "Poppins-Bold");
 GlobalFonts.registerFromPath(join(__dirname, "../assets/fonts/Poppins-SemiBold.ttf"), "Poppins-SemiBold");
+GlobalFonts.registerFromPath(join(__dirname, "../assets/fonts/NotoSansMath-Regular.ttf"), "NotoSansMath");
+GlobalFonts.registerFromPath(join(__dirname, "../assets/fonts/NotoEmoji-VariableFont_wght.ttf"), "NotoEmoji");
+GlobalFonts.registerFromPath(join(__dirname, "../assets/fonts/BebasNeue-Regular.ttf"), "BebasNeue");
+GlobalFonts.registerFromPath(join(__dirname, "../assets/fonts/Montserrat-ExtraBold.ttf"), "MontserratEB");
+GlobalFonts.registerFromPath(join(__dirname, "../assets/fonts/Uni Sans Heavy.otf"), "UniSansHeavy");
+GlobalFonts.registerFromPath(join(__dirname, "../assets/fonts/Uni Sans Heavy Italic.otf"), "UniSansHeavyItalic");
+GlobalFonts.registerFromPath(join(__dirname, "../assets/fonts/Discord.ttf"), "DiscordFont");
 import axios from "axios";
 import type { WelcomeImageOptions } from "../types/welcomeImage.js";
 
 export async function generateWelcomeImage(options: WelcomeImageOptions): Promise<Buffer> {
-  const { username, avatarUrl, backgroundUrl, hexColor, quote, guildName, guildIconUrl } = options;
+  const { username, avatarUrl, backgroundUrl, hexColor, quoteColor, quote, guildName, guildIconUrl, showGuildBadge } =
+    options;
 
   // 1. Charger et redimensionner le background
   // 2. Créer le canvas
@@ -39,9 +47,9 @@ export async function generateWelcomeImage(options: WelcomeImageOptions): Promis
   const avatar = await loadImage(avatarBuffer);
 
   // Dessiner l'avatar arrondi
-  const AVATAR_SIZE = 160;
+  const AVATAR_SIZE = 185;
   const CENTER_X = WIDTH / 2;
-  const AVATAR_Y = 30;
+  const AVATAR_Y = 40;
 
   // Contour blanc
   ctx.save();
@@ -63,36 +71,27 @@ export async function generateWelcomeImage(options: WelcomeImageOptions): Promis
 
   const CENTER_Y = HEIGHT / 2;
 
-  // WELCOME
   ctx.textAlign = "center";
-  ctx.shadowColor = "rgba(0, 0, 0, 0.95)";
-  ctx.shadowBlur = 12;
-  ctx.shadowOffsetX = 4;
-  ctx.shadowOffsetY = 4;
+  ctx.shadowColor = "rgba(0, 0, 0, 1)";
+  ctx.shadowBlur = 6;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 0;
 
-  ctx.font = "35px Poppins-SemiBold";
-  ctx.fillStyle = "white";
-  ctx.fillText("WELCOME", CENTER_X, CENTER_Y + 40);
-  ctx.lineWidth = 0.5;
-  ctx.strokeStyle = "black";
-  ctx.strokeText("WELCOME", CENTER_X, CENTER_Y + 40);
-
-  // Nom du membre
-  ctx.font = "70px Poppins-Bold";
+  ctx.font = "58px DiscordFont, UniSansHeavy, NotoSansMath, NotoEmoji";
   ctx.fillStyle = hexColor;
-  ctx.fillText(username.toUpperCase(), CENTER_X, CENTER_Y + 105);
-  ctx.lineWidth = 0.5;
-  ctx.strokeStyle = "black";
-  ctx.strokeText(username.toUpperCase(), CENTER_X, CENTER_Y + 105);
+  ctx.fillText("WELCOME", CENTER_X, CENTER_Y + 90);
 
-  // Quote
-  const displayQuote = quote ?? `Welcome to ${guildName}!`;
-  ctx.font = "25px Poppins-SemiBold";
+  ctx.font = "36px DiscordFont, UniSansHeavy, NotoSansMath, NotoEmoji";
   ctx.fillStyle = "white";
-  ctx.fillText(displayQuote, CENTER_X, CENTER_Y + 140);
+  ctx.fillText(username.toUpperCase(), CENTER_X, CENTER_Y + 130);
+
+  const displayQuote = quote ?? `Welcome to ${guildName}!`;
+  ctx.font = "24px DiscordFont, UniSansHeavy, NotoSansMath, NotoEmoji";
+  ctx.fillStyle = quoteColor;
+  ctx.fillText(displayQuote, CENTER_X, CENTER_Y + 165);
 
   // Icône de la guild
-  if (guildIconUrl) {
+  if (showGuildBadge && guildIconUrl) {
     const iconResponse = await axios.get(guildIconUrl, { responseType: "arraybuffer" });
     const iconBuffer = Buffer.from(iconResponse.data);
     const guildIcon = await loadImage(iconBuffer);
@@ -112,7 +111,7 @@ export async function generateWelcomeImage(options: WelcomeImageOptions): Promis
 
     // Nom de la guild
     ctx.textAlign = "left";
-    ctx.font = "20px Poppins-SemiBold";
+    ctx.font = "20px UniSansHeavyItalic, NotoSansMath, NotoEmoji";
     ctx.fillStyle = "white";
     ctx.shadowColor = "rgba(0, 0, 0, 0.95)";
     ctx.shadowBlur = 8;

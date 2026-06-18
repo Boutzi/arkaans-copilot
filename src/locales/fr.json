@@ -9,7 +9,9 @@
   "SETWELCOME_IMAGE_OPTION": "URL de l'image de fond pour la carte de bienvenue",
   "SETWELCOME_ACTIVATED_OPTION": "Activer ou désactiver le message de bienvenue",
   "SETWELCOME_COLOR_OPTION": "Couleur hexadécimale pour le texte de la carte de bienvenue",
+  "SETWELCOME_QUOTE_COLOR_OPTION": "Couleur hexadécimale pour la citation (par défaut : couleur principale)",
   "SETWELCOME_QUOTE_OPTION": "Message personnalisé affiché sur la carte de bienvenue",
+  "SETWELCOME_GUILD_BADGE_OPTION": "Afficher le nom et l'icône du serveur sur la carte de bienvenue",
   "TESTWELCOME_DESCRIPTION": "Prévisualiser le message de bienvenue comme si vous veniez d'arriver",
   "SETLANGUAGE_DESCRIPTION": "Définir la langue pour ce serveur",
   "HELP_DESCRIPTION": "Parcourir toutes les commandes disponibles",
@@ -49,6 +51,7 @@
 
   "SETWELCOME_SUCCESS_TITLE": "Message de bienvenue mis à jour",
   "SETWELCOME_NO_CHANNEL": "Aucun salon de bienvenue trouvé. Veuillez en spécifier un.",
+  "SETWELCOME_NO_IMAGE": "Aucune image de fond trouvée. Veuillez fournir une URL d'image.",
   "SETWELCOME_FIELD_CHANNEL": "Salon",
   "SETWELCOME_FIELD_ACTIVE": "Activé",
   "SETWELCOME_FIELD_COLOR": "Couleur",
