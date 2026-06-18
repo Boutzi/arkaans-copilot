@@ -28,6 +28,8 @@ const event: Event<Events.GuildMemberAdd> = {
         quote: guildConfig.welcomeMessage ?? null,
         guildName: member.guild.name,
         guildIconUrl: member.guild.iconURL({ extension: "png" }) ?? undefined,
+        showGuildBadge: guildConfig.showGuildBadge,
+        quoteColor: guildConfig.quoteColor ?? guildConfig.hexColor ?? "#FFFFFF",
       });
 
       const attachment = new AttachmentBuilder(imageBuffer, { name: "welcome.png" });

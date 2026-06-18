@@ -9,7 +9,9 @@
   "SETWELCOME_IMAGE_OPTION": "Background image URL for the welcome card",
   "SETWELCOME_ACTIVATED_OPTION": "Enable or disable the welcome message",
   "SETWELCOME_COLOR_OPTION": "Hex color for the welcome card text",
+  "SETWELCOME_QUOTE_COLOR_OPTION": "Hex color for the quote text (defaults to main color)",
   "SETWELCOME_QUOTE_OPTION": "Custom message shown on the welcome card",
+  "SETWELCOME_GUILD_BADGE_OPTION": "Show the server name and icon on the welcome card",
   "TESTWELCOME_DESCRIPTION": "Preview the welcome message as if you just joined",
   "SETLANGUAGE_DESCRIPTION": "Set the language for this server",
   "HELP_DESCRIPTION": "Browse all available commands",
@@ -49,6 +51,7 @@
 
   "SETWELCOME_SUCCESS_TITLE": "Welcome message updated",
   "SETWELCOME_NO_CHANNEL": "No welcome channel found. Please specify a channel.",
+  "SETWELCOME_NO_IMAGE": "No background image found. Please provide an image URL.",
   "SETWELCOME_FIELD_CHANNEL": "Channel",
   "SETWELCOME_FIELD_ACTIVE": "Enabled",
   "SETWELCOME_FIELD_COLOR": "Color",

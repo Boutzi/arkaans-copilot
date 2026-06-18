@@ -9,7 +9,9 @@
   "SETWELCOME_IMAGE_OPTION": "환영 카드의 배경 이미지 URL",
   "SETWELCOME_ACTIVATED_OPTION": "환영 메시지 활성화 또는 비활성화",
   "SETWELCOME_COLOR_OPTION": "환영 카드 텍스트의 헥스 색상",
+  "SETWELCOME_QUOTE_COLOR_OPTION": "인용문 텍스트의 헥스 색상 (기본값: 주 색상)",
   "SETWELCOME_QUOTE_OPTION": "환영 카드에 표시되는 사용자 지정 메시지",
+  "SETWELCOME_GUILD_BADGE_OPTION": "환영 카드에 서버 이름과 아이콘 표시",
   "TESTWELCOME_DESCRIPTION": "방금 참가한 것처럼 환영 메시지를 미리 봅니다",
   "SETLANGUAGE_DESCRIPTION": "이 서버의 언어 설정",
   "HELP_DESCRIPTION": "사용 가능한 모든 명령어 보기",
@@ -49,6 +51,7 @@
 
   "SETWELCOME_SUCCESS_TITLE": "환영 메시지 업데이트됨",
   "SETWELCOME_NO_CHANNEL": "환영 채널을 찾을 수 없습니다. 채널을 지정해 주세요.",
+  "SETWELCOME_NO_IMAGE": "배경 이미지를 찾을 수 없습니다. 이미지 URL을 제공해 주세요.",
   "SETWELCOME_FIELD_CHANNEL": "채널",
   "SETWELCOME_FIELD_ACTIVE": "활성화됨",
   "SETWELCOME_FIELD_COLOR": "색상",

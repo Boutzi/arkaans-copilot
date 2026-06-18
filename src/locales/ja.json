@@ -9,7 +9,9 @@
   "SETWELCOME_IMAGE_OPTION": "ウェルカムカードの背景画像URL",
   "SETWELCOME_ACTIVATED_OPTION": "ウェルカムメッセージを有効または無効にする",
   "SETWELCOME_COLOR_OPTION": "ウェルカムカードのテキストの色（16進数）",
+  "SETWELCOME_QUOTE_COLOR_OPTION": "引用テキストの色（16進数）（デフォルト：メインカラー）",
   "SETWELCOME_QUOTE_OPTION": "ウェルカムカードに表示するカスタムメッセージ",
+  "SETWELCOME_GUILD_BADGE_OPTION": "ウェルカムカードにサーバー名とアイコンを表示",
   "TESTWELCOME_DESCRIPTION": "参加直後のようにウェルカムメッセージをプレビュー",
   "SETLANGUAGE_DESCRIPTION": "このサーバーの言語を設定",
   "HELP_DESCRIPTION": "利用可能なすべてのコマンドを表示",
@@ -49,6 +51,7 @@
 
   "SETWELCOME_SUCCESS_TITLE": "ウェルカムメッセージを更新しました",
   "SETWELCOME_NO_CHANNEL": "ウェルカムチャンネルが見つかりません。チャンネルを指定してください。",
+  "SETWELCOME_NO_IMAGE": "背景画像が見つかりません。画像URLを指定してください。",
   "SETWELCOME_FIELD_CHANNEL": "チャンネル",
   "SETWELCOME_FIELD_ACTIVE": "有効",
   "SETWELCOME_FIELD_COLOR": "カラー",

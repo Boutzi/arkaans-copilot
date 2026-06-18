@@ -9,7 +9,9 @@
   "SETWELCOME_IMAGE_OPTION": "欢迎卡片的背景图片 URL",
   "SETWELCOME_ACTIVATED_OPTION": "启用或禁用欢迎消息",
   "SETWELCOME_COLOR_OPTION": "欢迎卡片文字的十六进制颜色",
+  "SETWELCOME_QUOTE_COLOR_OPTION": "引用文字的十六进制颜色（默认：主色）",
   "SETWELCOME_QUOTE_OPTION": "欢迎卡片上显示的自定义消息",
+  "SETWELCOME_GUILD_BADGE_OPTION": "在欢迎卡片上显示服务器名称和图标",
   "TESTWELCOME_DESCRIPTION": "预览欢迎消息，就像刚刚加入一样",
   "SETLANGUAGE_DESCRIPTION": "设置此服务器的语言",
   "HELP_DESCRIPTION": "查看所有可用命令",
@@ -49,6 +51,7 @@
 
   "SETWELCOME_SUCCESS_TITLE": "欢迎消息已更新",
   "SETWELCOME_NO_CHANNEL": "未找到欢迎频道，请指定一个频道。",
+  "SETWELCOME_NO_IMAGE": "未找到背景图片，请提供图片 URL。",
   "SETWELCOME_FIELD_CHANNEL": "频道",
   "SETWELCOME_FIELD_ACTIVE": "已启用",
   "SETWELCOME_FIELD_COLOR": "颜色",

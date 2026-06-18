@@ -9,7 +9,9 @@
   "SETWELCOME_IMAGE_OPTION": "URL dell'immagine di sfondo per la scheda di benvenuto",
   "SETWELCOME_ACTIVATED_OPTION": "Attiva o disattiva il messaggio di benvenuto",
   "SETWELCOME_COLOR_OPTION": "Colore esadecimale per il testo della scheda di benvenuto",
+  "SETWELCOME_QUOTE_COLOR_OPTION": "Colore esadecimale per la citazione (predefinito: colore principale)",
   "SETWELCOME_QUOTE_OPTION": "Messaggio personalizzato sulla scheda di benvenuto",
+  "SETWELCOME_GUILD_BADGE_OPTION": "Mostra il nome e l'icona del server sulla scheda di benvenuto",
   "TESTWELCOME_DESCRIPTION": "Anteprima del messaggio di benvenuto come se fossi appena entrato",
   "SETLANGUAGE_DESCRIPTION": "Imposta la lingua per questo server",
   "HELP_DESCRIPTION": "Sfoglia tutti i comandi disponibili",
@@ -49,6 +51,7 @@
 
   "SETWELCOME_SUCCESS_TITLE": "Messaggio di benvenuto aggiornato",
   "SETWELCOME_NO_CHANNEL": "Nessun canale di benvenuto trovato. Specificane uno.",
+  "SETWELCOME_NO_IMAGE": "Nessuna immagine di sfondo trovata. Fornisci un URL immagine.",
   "SETWELCOME_FIELD_CHANNEL": "Canale",
   "SETWELCOME_FIELD_ACTIVE": "Attivato",
   "SETWELCOME_FIELD_COLOR": "Colore",

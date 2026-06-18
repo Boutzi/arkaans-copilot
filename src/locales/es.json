@@ -9,7 +9,9 @@
   "SETWELCOME_IMAGE_OPTION": "URL de la imagen de fondo para la tarjeta de bienvenida",
   "SETWELCOME_ACTIVATED_OPTION": "Activar o desactivar el mensaje de bienvenida",
   "SETWELCOME_COLOR_OPTION": "Color hexadecimal para el texto de la tarjeta de bienvenida",
+  "SETWELCOME_QUOTE_COLOR_OPTION": "Color hexadecimal para la cita (por defecto: color principal)",
   "SETWELCOME_QUOTE_OPTION": "Mensaje personalizado en la tarjeta de bienvenida",
+  "SETWELCOME_GUILD_BADGE_OPTION": "Mostrar el nombre e ícono del servidor en la tarjeta de bienvenida",
   "TESTWELCOME_DESCRIPTION": "Vista previa del mensaje de bienvenida como si acabaras de unirte",
   "SETLANGUAGE_DESCRIPTION": "Establecer el idioma para este servidor",
   "HELP_DESCRIPTION": "Ver todos los comandos disponibles",
@@ -49,6 +51,7 @@
 
   "SETWELCOME_SUCCESS_TITLE": "Mensaje de bienvenida actualizado",
   "SETWELCOME_NO_CHANNEL": "No se encontró canal de bienvenida. Especifica uno.",
+  "SETWELCOME_NO_IMAGE": "No se encontró imagen de fondo. Proporciona una URL de imagen.",
   "SETWELCOME_FIELD_CHANNEL": "Canal",
   "SETWELCOME_FIELD_ACTIVE": "Activado",
   "SETWELCOME_FIELD_COLOR": "Color",

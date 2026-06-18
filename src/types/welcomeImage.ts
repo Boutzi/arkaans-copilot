@@ -6,4 +6,6 @@ export interface WelcomeImageOptions {
   quote: string | null;
   guildName: string;
   guildIconUrl?: string | undefined;
+  showGuildBadge: boolean;
+  quoteColor: string;
 }
